@@ -32,18 +32,29 @@ def distance_find(string_one, string_two):
 
     print(f'The inner product of the word vectors is: {inner_product}')
 
-    length_corrected_inner_product = (inner_product)/(len(word_vector_one)*len(word_vector_two))
+    norm_inner_product1 = 0
+    for element in word_vector_one:
+        norm_inner_product1 = norm_inner_product1 + word_vector_one[element]*word_vector_one[element]
+
+    norm_1 = mth.sqrt(norm_inner_product1)
+
+    norm_inner_product2 = 0
+    for element in word_vector_two:
+        norm_inner_product2 = norm_inner_product2 + word_vector_two[element]*word_vector_two[element]
+
+    norm_2 = mth.sqrt(norm_inner_product2)
+
+    length_corrected_inner_product = inner_product/(norm_1*norm_2)
 
     print(f'The length corrected inner product of the word vectors is: {length_corrected_inner_product}')
 
     angle_of_similarity = mth.acos(length_corrected_inner_product)
     angle_of_similarity = mth.degrees(angle_of_similarity)
 
-
     return angle_of_similarity
 
 
-#  _____________________________________________________
+#  _________________________test____________________________
 
 string_a = 'The box of plates junk at the mall was a way cooler display it it it it it it it'
 string_b = 'The box of the electronics at disney had a suspicious looking guy near it it it it it it it'
